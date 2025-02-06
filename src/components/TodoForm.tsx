@@ -1,10 +1,14 @@
 import { API_URL } from '@/config';
 import { useState } from 'react';
 
-export default function TodoForm({ onTodoAdd }) {
+interface TodoFormProps {
+    onTodoAdd: () => void;
+}
+
+export default function TodoForm({ onTodoAdd }: TodoFormProps) {
     const [text, setText] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!text.trim()) return;
 

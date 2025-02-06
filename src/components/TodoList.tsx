@@ -1,7 +1,7 @@
 import { API_URL } from '@/config';
 
-export default function TodoList({ todos, onTodoUpdate }) {
-    const toggleTodo = async (id, completed) => {
+export default function TodoList({ todos, onTodoUpdate }: { todos: Array<{ _id: string; text: string; completed: boolean }>; onTodoUpdate: () => void }) {
+    const toggleTodo = async (id: string, completed: boolean) => {
         await fetch(`${API_URL}/${id}`, {
             method: 'PATCH',
             headers: {
@@ -12,7 +12,7 @@ export default function TodoList({ todos, onTodoUpdate }) {
         onTodoUpdate();
     };
 
-    const deleteTodo = async (id) => {
+    const deleteTodo = async (id: string) => {
         await fetch(`${API_URL}/${id}`, {
             method: 'DELETE',
         });
